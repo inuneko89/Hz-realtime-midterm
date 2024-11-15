@@ -3,8 +3,10 @@ import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
 from datetime import datetime, timedelta
+
+# Define Earth-tone colors
+earthtone_colors = ['#8C7853', '#B77A62', '#C49C6C', '#D3C0A7', '#A89F91']
 
 def get_data_from_pinot(query):
     try:
@@ -24,7 +26,11 @@ def get_data_from_pinot(query):
 def plot_average_price_by_coffee_type(df):
     coffee_price_avg = df.groupby('COFFEE_TYPES')['TOTAL_PRICE'].mean()
     fig, ax = plt.subplots(figsize=(8, 6), facecolor='#FFFBF0')
-    coffee_price_avg.plot(kind='bar', ax=ax, color='#8C7853')
+    
+    # Assign Earth-tone colors to each bar
+    colors = earthtone_colors[:len(coffee_price_avg)]
+    coffee_price_avg.plot(kind='bar', ax=ax, color=colors)
+    
     ax.set_title('Average Total Price by Coffee Type', fontsize=18, fontweight='bold', color='#5C4033')
     ax.set_xlabel('Coffee Type', fontsize=14, color='#5C4033')
     ax.set_ylabel('Average Total Price', fontsize=14, color='#5C4033')
@@ -70,7 +76,11 @@ def plot_order_time_distribution(df):
 def plot_order_count_by_coffee_type(df):
     coffee_order_count = df['COFFEE_TYPES'].value_counts()
     fig, ax = plt.subplots(figsize=(8, 6), facecolor='#FFFBF0')
-    coffee_order_count.plot(kind='bar', ax=ax, color='#8C7853')
+    
+    # Assign Earth-tone colors to each bar
+    colors = earthtone_colors[:len(coffee_order_count)]
+    coffee_order_count.plot(kind='bar', ax=ax, color=colors)
+    
     ax.set_title('Order Count by Coffee Type', fontsize=18, fontweight='bold', color='#5C4033')
     ax.set_xlabel('Coffee Type', fontsize=14, color='#5C4033')
     ax.set_ylabel('Number of Orders', fontsize=14, color='#5C4033')
