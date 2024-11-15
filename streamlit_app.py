@@ -131,7 +131,6 @@ def main():
         # Data Table Section in Sidebar
         st.sidebar.subheader('Recent Orders')
         st.sidebar.dataframe(last_24_hours[['ORDERID', 'USERID', 'COFFEE_TYPES', 'QUANTITY', 'TOTAL_PRICE', 'STATUS']])
-
     else:
         st.write("Failed to fetch data from the database.")
 
